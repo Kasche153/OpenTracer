@@ -29,6 +29,18 @@ def collectTransactionHistory(contractAddress, endBlock: int = -1):
         txHashes = crawler.Contract2TxHistory(contractAddress, endBlock)
     return txHashes 
 
+
+def storeATrace2(txHash: str):
+    fe = fetcher()
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    path = SCRIPT_DIR + "/playground/" + txHash + ".json"
+    # check if the file exists
+    if os.path.exists(path):
+        return
+    result_dict = fe.getTrace(txHash, FullTrace = False)
+    writeJson(path, result_dict)
+
+
 def storeATrace(txHash: str):
     fe = fetcher()
     SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -632,6 +644,7 @@ def collectTraceAndInvariants(contract, endBlock, l1 ,l2, l3):
     
     # The following code extracts invariant-related data from the transactions
     for ii in range(len(txHashes)):
+        print(txHashes[ii])
         # if readAccessList(contract, txHashes[ii]) != []:
         #     continue
         dataSourceMapList, accessList, splitedTraceTree = analyzeOneTx(contract, txHashes[ii], pathList[ii], l1, l2, l3)        
