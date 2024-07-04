@@ -292,6 +292,7 @@ def mainTestTime():
 
     # read the data source map list
     for ii in range( trainingSetSize ):
+        
         executionList = readDataSource(contract, txHashes[ii])
         if len(executionList) > 0 and len(executionList[0]) > 0:
             for execution in executionList[0]:
@@ -393,10 +394,10 @@ def main():
 
     # Feature 1: Given a target contract, collect all transactions related to the contract.
     # Collect all snippets of the transactions related to the target contract, collect invariant-related data, generate invariants
-    # feature1()
+    feature1()
 
-  ##  feature3()
-    collectTraceAndInvariants(contract="0xe952bda8c06481506e4731c4f54ced2d4ab81659", endBlock=14465357, l1=[], l2=[], l3=[])
+    ##  feature3()
+    #collectTraceAndInvariants(contract="0xe952bda8c06481506e4731c4f54ced2d4ab81659", endBlock=14465357, l1=[], l2=[], l3=[])
 
 
 
@@ -522,11 +523,15 @@ def feature1():
     # read the data source map list
     for ii in range( trainingSetSize ):
         executionList = readDataSource(contract, txHashes[ii])
+        print(f'>>>> Execution list of tx {ii} is {executionList}')
         if len(executionList) > 0 and len(executionList[0]) > 0:
             for execution in executionList[0]:
                 executionListList.append( (txHashes[ii], execution) )
-
+        #print(f'\n\n>>>> Execution list of tx {ii} is merely {executionList}\n\n')
+        
+    
     executionListTable.append( (contract, executionListList) )
+    #print(f'\n\n>>>> Execution list table (after appending) is\n {executionListTable}\n\n')
 
 
     
