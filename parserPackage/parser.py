@@ -1591,7 +1591,7 @@ proxyMap = {
     "0xc1e088fc1323b20bcbee9bd1b9fc9546db5624c5": "0xf480ee81a54e21be47aa02d0f9e29985bc7667c4",  # BeanstalkFarms interface
 }
 
-NOPRINT = True
+NOPRINT = False
 def analyzeOneTx(contract, Tx, path, depositLocators, investLocators, withdrawLocators):
 
     if Tx.lower() == "0x5282d512c2dafa117ca97f7d0fc052e2ac716b87c06113246a5e5a8cad67c156" \

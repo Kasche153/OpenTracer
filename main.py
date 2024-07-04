@@ -493,7 +493,8 @@ def feature1():
     for ii in range(len(txHashes)):
         # if readAccessList(contract, txHashes[ii]) != []:
         #     continue
-        dataSourceMapList, accessList, splitedTraceTree = analyzeOneTx(contract, txHashes[ii], pathList[ii], l1, l2, l3)        
+        dataSourceMapList, accessList, splitedTraceTree = analyzeOneTx(contract, txHashes[ii], pathList[ii], l1, l2, l3) 
+        print(f'dataSourceMapList for {txHashes[ii]} is {dataSourceMapList}')       
         writeDataSource(contract, txHashes[ii], dataSourceMapList)
         writeAccessList(contract, txHashes[ii], accessList)
         writeSplitedTraceTree(contract, txHashes[ii], splitedTraceTree)
@@ -523,15 +524,12 @@ def feature1():
     # read the data source map list
     for ii in range( trainingSetSize ):
         executionList = readDataSource(contract, txHashes[ii])
-        print(f'>>>> Execution list of tx {ii} is {executionList}')
         if len(executionList) > 0 and len(executionList[0]) > 0:
             for execution in executionList[0]:
                 executionListList.append( (txHashes[ii], execution) )
-        #print(f'\n\n>>>> Execution list of tx {ii} is merely {executionList}\n\n')
         
     
     executionListTable.append( (contract, executionListList) )
-    #print(f'\n\n>>>> Execution list table (after appending) is\n {executionListTable}\n\n')
 
 
     
